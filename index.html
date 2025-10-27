@@ -10,10 +10,12 @@
     <style>
         body {
             font-family: 'Noto Sans Bengali', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
         .nav-item.active {
             background-color: #3b82f6;
             color: white;
+            border: 2px solid #2563eb;
         }
         .section {
             display: none;
@@ -21,18 +23,92 @@
         .section.active {
             display: block;
         }
+        .card {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        .card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        .form-input, .form-select, .form-textarea {
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border: 2px solid #1d4ed8;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(30, 64, 175, 0.3);
+        }
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            border: 2px solid #dc2626;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .btn-danger:hover {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
+        }
+        .stat-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        .activity-item {
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .activity-item:hover {
+            border-color: #3b82f6;
+            transform: translateX(5px);
+        }
+        .table-bordered {
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .table-bordered th, .table-bordered td {
+            border: 1px solid #e2e8f0;
+        }
+        .nav-container {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body class="min-h-screen">
     <!-- হেডার -->
-    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg">
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg border-b-4 border-blue-900">
         <div class="container mx-auto px-4 py-4">
             <div class="flex justify-between items-center">
                 <div>
                     <h1 class="text-2xl font-bold">মিস্ত্রি হিসাব</h1>
                     <p class="text-blue-100">MR. MOMIN - আপনার ব্যক্তিগত হিসাব ব্যবস্থাপক</p>
                 </div>
-                <div class="bg-white text-blue-600 rounded-full p-3 shadow-md">
+                <div class="bg-white text-blue-600 rounded-full p-3 shadow-md border-2 border-blue-500">
                     <i class="fas fa-hard-hat text-2xl"></i>
                 </div>
             </div>
@@ -40,46 +116,46 @@
     </header>
 
     <!-- নেভিগেশন -->
-    <nav class="bg-white shadow-md sticky top-0 z-10">
-        <div class="container mx-auto px-4">
-            <div class="flex overflow-x-auto py-2 space-x-2">
-                <button class="nav-item active flex flex-col items-center px-4 py-2 rounded-lg transition-all" data-section="dashboard">
+    <div class="container mx-auto px-4 py-4">
+        <div class="nav-container bg-white shadow-md">
+            <div class="flex overflow-x-auto py-2 space-x-2 px-2">
+                <button class="nav-item active flex flex-col items-center px-4 py-2 rounded-lg transition-all border-2 border-transparent" data-section="dashboard">
                     <i class="fas fa-tachometer-alt mb-1"></i>
                     <span class="text-xs">ড্যাশবোর্ড</span>
                 </button>
-                <button class="nav-item flex flex-col items-center px-4 py-2 rounded-lg transition-all" data-section="work">
+                <button class="nav-item flex flex-col items-center px-4 py-2 rounded-lg transition-all border-2 border-transparent" data-section="work">
                     <i class="fas fa-tools mb-1"></i>
                     <span class="text-xs">কাজের হিসাব</span>
                 </button>
-                <button class="nav-item flex flex-col items-center px-4 py-2 rounded-lg transition-all" data-section="expense">
+                <button class="nav-item flex flex-col items-center px-4 py-2 rounded-lg transition-all border-2 border-transparent" data-section="expense">
                     <i class="fas fa-money-bill-wave mb-1"></i>
                     <span class="text-xs">খরচ</span>
                 </button>
-                <button class="nav-item flex flex-col items-center px-4 py-2 rounded-lg transition-all" data-section="advance">
+                <button class="nav-item flex flex-col items-center px-4 py-2 rounded-lg transition-all border-2 border-transparent" data-section="advance">
                     <i class="fas fa-hand-holding-usd mb-1"></i>
                     <span class="text-xs">অগ্রিম</span>
                 </button>
-                <button class="nav-item flex flex-col items-center px-4 py-2 rounded-lg transition-all" data-section="loan">
+                <button class="nav-item flex flex-col items-center px-4 py-2 rounded-lg transition-all border-2 border-transparent" data-section="loan">
                     <i class="fas fa-handshake mb-1"></i>
                     <span class="text-xs">ধার</span>
                 </button>
-                <button class="nav-item flex flex-col items-center px-4 py-2 rounded-lg transition-all" data-section="report">
+                <button class="nav-item flex flex-col items-center px-4 py-2 rounded-lg transition-all border-2 border-transparent" data-section="report">
                     <i class="fas fa-chart-bar mb-1"></i>
                     <span class="text-xs">রিপোর্ট</span>
                 </button>
             </div>
         </div>
-    </nav>
+    </div>
 
     <!-- মূল কন্টেন্ট -->
     <main class="container mx-auto px-4 py-6">
         <!-- ড্যাশবোর্ড -->
         <section id="dashboard" class="section active">
             <div class="mb-6">
-                <h2 class="text-xl font-bold text-gray-800 mb-4">ড্যাশবোর্ড</h2>
-                <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 border-l-4 border-blue-500 pl-3">ড্যাশবোর্ড</h2>
+                <div class="card bg-white p-6 mb-6">
                     <div class="flex items-center space-x-4">
-                        <div class="bg-blue-100 text-blue-600 rounded-full p-4">
+                        <div class="bg-blue-100 text-blue-600 rounded-full p-4 border-2 border-blue-300">
                             <i class="fas fa-user text-2xl"></i>
                         </div>
                         <div>
@@ -92,28 +168,28 @@
 
             <!-- সারাংশ কার্ড -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                <div class="bg-white rounded-lg shadow p-4 text-center">
+                <div class="stat-card bg-white p-4 text-center">
                     <div class="text-blue-500 mb-2">
                         <i class="fas fa-tools text-2xl"></i>
                     </div>
                     <p class="text-gray-600 text-sm">এই মাসের কাজ</p>
                     <p id="monthWork" class="text-xl font-bold">০ দিন</p>
                 </div>
-                <div class="bg-white rounded-lg shadow p-4 text-center">
+                <div class="stat-card bg-white p-4 text-center">
                     <div class="text-green-500 mb-2">
                         <i class="fas fa-money-bill text-2xl"></i>
                     </div>
                     <p class="text-gray-600 text-sm">মোট আয়</p>
                     <p id="totalEarning" class="text-xl font-bold">০ টাকা</p>
                 </div>
-                <div class="bg-white rounded-lg shadow p-4 text-center">
+                <div class="stat-card bg-white p-4 text-center">
                     <div class="text-red-500 mb-2">
                         <i class="fas fa-sack-dollar text-2xl"></i>
                     </div>
                     <p class="text-gray-600 text-sm">মোট খরচ</p>
                     <p id="totalExpense" class="text-xl font-bold">০ টাকা</p>
                 </div>
-                <div class="bg-white rounded-lg shadow p-4 text-center">
+                <div class="stat-card bg-white p-4 text-center">
                     <div class="text-purple-500 mb-2">
                         <i class="fas fa-scale-balanced text-2xl"></i>
                     </div>
@@ -123,8 +199,8 @@
             </div>
 
             <!-- সাম্প্রতিক কার্যক্রম -->
-            <div class="bg-white rounded-xl shadow-md p-6">
-                <h3 class="text-lg font-bold text-gray-800 mb-4">সাম্প্রতিক কার্যক্রম</h3>
+            <div class="card bg-white p-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 border-b-2 border-gray-200 pb-2">সাম্প্রতিক কার্যক্রম</h3>
                 <div id="recentActivity" class="space-y-4">
                     <div class="text-center py-8 text-gray-500">
                         <i class="fas fa-clipboard-list text-4xl mb-3"></i>
@@ -136,41 +212,41 @@
 
         <!-- কাজের হিসাব -->
         <section id="work" class="section">
-            <h2 class="text-xl font-bold text-gray-800 mb-4">কাজের হিসাব</h2>
+            <h2 class="text-xl font-bold text-gray-800 mb-4 border-l-4 border-blue-500 pl-3">কাজের হিসাব</h2>
             
             <!-- কাজ যোগ করার ফর্ম -->
-            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
-                <h3 class="text-lg font-bold text-gray-800 mb-4">নতুন কাজ যোগ করুন</h3>
+            <div class="card bg-white p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 border-b-2 border-gray-200 pb-2">নতুন কাজ যোগ করুন</h3>
                 <form id="workForm">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
                             <label for="workDate" class="block text-gray-700 mb-2">তারিখ</label>
-                            <input type="date" id="workDate" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <input type="date" id="workDate" class="form-input w-full px-4 py-2" required>
                         </div>
                         <div>
                             <label for="workEarning" class="block text-gray-700 mb-2">আয় (টাকায়)</label>
-                            <input type="number" id="workEarning" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" value="600" required>
+                            <input type="number" id="workEarning" class="form-input w-full px-4 py-2" value="600" required>
                         </div>
                     </div>
                     <div class="mb-4">
                         <label for="workDescription" class="block text-gray-700 mb-2">কাজের বিবরণ</label>
-                        <textarea id="workDescription" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="আজকে কি কাজ করেছেন? (যেমন: ইট বসানো, প্লাস্টার করা ইত্যাদি)" required></textarea>
+                        <textarea id="workDescription" rows="3" class="form-textarea w-full px-4 py-2" placeholder="আজকে কি কাজ করেছেন? (যেমন: ইট বসানো, প্লাস্টার করা ইত্যাদি)" required></textarea>
                     </div>
                     <div class="mb-4">
                         <label for="workLocation" class="block text-gray-700 mb-2">কাজের স্থান</label>
-                        <input type="text" id="workLocation" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="ঢাকা, মোহাম্মদপুর" required>
+                        <input type="text" id="workLocation" class="form-input w-full px-4 py-2" placeholder="ঢাকা, মোহাম্মদপুর" required>
                     </div>
-                    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition duration-200">
+                    <button type="submit" class="btn-primary w-full text-white py-3 font-bold">
                         <i class="fas fa-plus-circle mr-2"></i>কাজ যোগ করুন
                     </button>
                 </form>
             </div>
 
             <!-- কাজের তালিকা -->
-            <div class="bg-white rounded-xl shadow-md p-6">
-                <div class="flex justify-between items-center mb-4">
+            <div class="card bg-white p-6">
+                <div class="flex justify-between items-center mb-4 border-b-2 border-gray-200 pb-2">
                     <h3 class="text-lg font-bold text-gray-800">কাজের তালিকা</h3>
-                    <button id="clearWorkBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-200">
+                    <button id="clearWorkBtn" class="btn-danger text-white px-4 py-2">
                         <i class="fas fa-trash mr-1"></i>সব মুছুন
                     </button>
                 </div>
@@ -186,25 +262,25 @@
 
         <!-- খরচ -->
         <section id="expense" class="section">
-            <h2 class="text-xl font-bold text-gray-800 mb-4">খরচের হিসাব</h2>
+            <h2 class="text-xl font-bold text-gray-800 mb-4 border-l-4 border-blue-500 pl-3">খরচের হিসাব</h2>
             
             <!-- খরচ যোগ করার ফর্ম -->
-            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
-                <h3 class="text-lg font-bold text-gray-800 mb-4">নতুন খরচ যোগ করুন</h3>
+            <div class="card bg-white p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 border-b-2 border-gray-200 pb-2">নতুন খরচ যোগ করুন</h3>
                 <form id="expenseForm">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
                             <label for="expenseDate" class="block text-gray-700 mb-2">তারিখ</label>
-                            <input type="date" id="expenseDate" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <input type="date" id="expenseDate" class="form-input w-full px-4 py-2" required>
                         </div>
                         <div>
                             <label for="expenseAmount" class="block text-gray-700 mb-2">খরচের পরিমাণ (টাকায়)</label>
-                            <input type="number" id="expenseAmount" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <input type="number" id="expenseAmount" class="form-input w-full px-4 py-2" required>
                         </div>
                     </div>
                     <div class="mb-4">
                         <label for="expenseCategory" class="block text-gray-700 mb-2">খরচের ধরন</label>
-                        <select id="expenseCategory" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <select id="expenseCategory" class="form-select w-full px-4 py-2" required>
                             <option value="">খরচের ধরন নির্বাচন করুন</option>
                             <option value="খাবার">খাবার</option>
                             <option value="পরিবহন">পরিবহন</option>
@@ -214,19 +290,19 @@
                     </div>
                     <div class="mb-4">
                         <label for="expenseDescription" class="block text-gray-700 mb-2">খরচের বিবরণ</label>
-                        <textarea id="expenseDescription" rows="2" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="খরচের বিস্তারিত বিবরণ লিখুন" required></textarea>
+                        <textarea id="expenseDescription" rows="2" class="form-textarea w-full px-4 py-2" placeholder="খরচের বিস্তারিত বিবরণ লিখুন" required></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700 transition duration-200">
+                    <button type="submit" class="btn-danger w-full text-white py-3 font-bold">
                         <i class="fas fa-plus-circle mr-2"></i>খরচ যোগ করুন
                     </button>
                 </form>
             </div>
 
             <!-- খরচের তালিকা -->
-            <div class="bg-white rounded-xl shadow-md p-6">
-                <div class="flex justify-between items-center mb-4">
+            <div class="card bg-white p-6">
+                <div class="flex justify-between items-center mb-4 border-b-2 border-gray-200 pb-2">
                     <h3 class="text-lg font-bold text-gray-800">খরচের তালিকা</h3>
-                    <button id="clearExpenseBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-200">
+                    <button id="clearExpenseBtn" class="btn-danger text-white px-4 py-2">
                         <i class="fas fa-trash mr-1"></i>সব মুছুন
                     </button>
                 </div>
@@ -242,41 +318,41 @@
 
         <!-- অগ্রিম -->
         <section id="advance" class="section">
-            <h2 class="text-xl font-bold text-gray-800 mb-4">অগ্রিম নেওয়ার হিসাব</h2>
+            <h2 class="text-xl font-bold text-gray-800 mb-4 border-l-4 border-blue-500 pl-3">অগ্রিম নেওয়ার হিসাব</h2>
             
             <!-- অগ্রিম যোগ করার ফর্ম -->
-            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
-                <h3 class="text-lg font-bold text-gray-800 mb-4">নতুন অগ্রিম যোগ করুন</h3>
+            <div class="card bg-white p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 border-b-2 border-gray-200 pb-2">নতুন অগ্রিম যোগ করুন</h3>
                 <form id="advanceForm">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
                             <label for="advanceDate" class="block text-gray-700 mb-2">তারিখ</label>
-                            <input type="date" id="advanceDate" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <input type="date" id="advanceDate" class="form-input w-full px-4 py-2" required>
                         </div>
                         <div>
                             <label for="advanceAmount" class="block text-gray-700 mb-2">অগ্রিমের পরিমাণ (টাকায়)</label>
-                            <input type="number" id="advanceAmount" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <input type="number" id="advanceAmount" class="form-input w-full px-4 py-2" required>
                         </div>
                     </div>
                     <div class="mb-4">
                         <label for="advanceFrom" class="block text-gray-700 mb-2">কে থেকে নিয়েছেন</label>
-                        <input type="text" id="advanceFrom" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="মালিকের নাম" required>
+                        <input type="text" id="advanceFrom" class="form-input w-full px-4 py-2" placeholder="মালিকের নাম" required>
                     </div>
                     <div class="mb-4">
                         <label for="advanceDescription" class="block text-gray-700 mb-2">বিবরণ</label>
-                        <textarea id="advanceDescription" rows="2" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="অগ্রিম নেওয়ার কারণ লিখুন" required></textarea>
+                        <textarea id="advanceDescription" rows="2" class="form-textarea w-full px-4 py-2" placeholder="অগ্রিম নেওয়ার কারণ লিখুন" required></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-yellow-600 text-white py-3 rounded-lg font-bold hover:bg-yellow-700 transition duration-200">
+                    <button type="submit" class="w-full bg-yellow-500 text-white py-3 rounded-lg font-bold hover:bg-yellow-600 transition duration-200 border-2 border-yellow-600">
                         <i class="fas fa-plus-circle mr-2"></i>অগ্রিম যোগ করুন
                     </button>
                 </form>
             </div>
 
             <!-- অগ্রিমের তালিকা -->
-            <div class="bg-white rounded-xl shadow-md p-6">
-                <div class="flex justify-between items-center mb-4">
+            <div class="card bg-white p-6">
+                <div class="flex justify-between items-center mb-4 border-b-2 border-gray-200 pb-2">
                     <h3 class="text-lg font-bold text-gray-800">অগ্রিমের তালিকা</h3>
-                    <button id="clearAdvanceBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-200">
+                    <button id="clearAdvanceBtn" class="btn-danger text-white px-4 py-2">
                         <i class="fas fa-trash mr-1"></i>সব মুছুন
                     </button>
                 </div>
@@ -292,41 +368,41 @@
 
         <!-- ধার -->
         <section id="loan" class="section">
-            <h2 class="text-xl font-bold text-gray-800 mb-4">ধার দেওয়ার হিসাব</h2>
+            <h2 class="text-xl font-bold text-gray-800 mb-4 border-l-4 border-blue-500 pl-3">ধার দেওয়ার হিসাব</h2>
             
             <!-- ধার যোগ করার ফর্ম -->
-            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
-                <h3 class="text-lg font-bold text-gray-800 mb-4">নতুন ধার যোগ করুন</h3>
+            <div class="card bg-white p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 border-b-2 border-gray-200 pb-2">নতুন ধার যোগ করুন</h3>
                 <form id="loanForm">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
                             <label for="loanDate" class="block text-gray-700 mb-2">তারিখ</label>
-                            <input type="date" id="loanDate" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <input type="date" id="loanDate" class="form-input w-full px-4 py-2" required>
                         </div>
                         <div>
                             <label for="loanAmount" class="block text-gray-700 mb-2">ধারের পরিমাণ (টাকায়)</label>
-                            <input type="number" id="loanAmount" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <input type="number" id="loanAmount" class="form-input w-full px-4 py-2" required>
                         </div>
                     </div>
                     <div class="mb-4">
                         <label for="loanTo" class="block text-gray-700 mb-2">কাকে দিয়েছেন</label>
-                        <input type="text" id="loanTo" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="ব্যক্তির নাম" required>
+                        <input type="text" id="loanTo" class="form-input w-full px-4 py-2" placeholder="ব্যক্তির নাম" required>
                     </div>
                     <div class="mb-4">
                         <label for="loanDescription" class="block text-gray-700 mb-2">বিবরণ</label>
-                        <textarea id="loanDescription" rows="2" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="ধার দেওয়ার কারণ লিখুন" required></textarea>
+                        <textarea id="loanDescription" rows="2" class="form-textarea w-full px-4 py-2" placeholder="ধার দেওয়ার কারণ লিখুন" required></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition duration-200">
+                    <button type="submit" class="w-full bg-green-500 text-white py-3 rounded-lg font-bold hover:bg-green-600 transition duration-200 border-2 border-green-600">
                         <i class="fas fa-plus-circle mr-2"></i>ধার যোগ করুন
                     </button>
                 </form>
             </div>
 
             <!-- ধারের তালিকা -->
-            <div class="bg-white rounded-xl shadow-md p-6">
-                <div class="flex justify-between items-center mb-4">
+            <div class="card bg-white p-6">
+                <div class="flex justify-between items-center mb-4 border-b-2 border-gray-200 pb-2">
                     <h3 class="text-lg font-bold text-gray-800">ধারের তালিকা</h3>
-                    <button id="clearLoanBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-200">
+                    <button id="clearLoanBtn" class="btn-danger text-white px-4 py-2">
                         <i class="fas fa-trash mr-1"></i>সব মুছুন
                     </button>
                 </div>
@@ -342,21 +418,21 @@
 
         <!-- রিপোর্ট -->
         <section id="report" class="section">
-            <h2 class="text-xl font-bold text-gray-800 mb-4">বিস্তারিত রিপোর্ট</h2>
+            <h2 class="text-xl font-bold text-gray-800 mb-4 border-l-4 border-blue-500 pl-3">বিস্তারিত রিপোর্ট</h2>
             
             <!-- সারাংশ -->
-            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
-                <h3 class="text-lg font-bold text-gray-800 mb-4">আর্থিক সারাংশ</h3>
+            <div class="card bg-white p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 border-b-2 border-gray-200 pb-2">আর্থিক সারাংশ</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="bg-blue-50 p-4 rounded-lg">
+                    <div class="bg-blue-50 p-4 rounded-lg border-2 border-blue-200">
                         <p class="text-blue-700 font-bold">মোট আয়</p>
                         <p id="reportTotalEarning" class="text-2xl font-bold">০ টাকা</p>
                     </div>
-                    <div class="bg-red-50 p-4 rounded-lg">
+                    <div class="bg-red-50 p-4 rounded-lg border-2 border-red-200">
                         <p class="text-red-700 font-bold">মোট খরচ</p>
                         <p id="reportTotalExpense" class="text-2xl font-bold">০ টাকা</p>
                     </div>
-                    <div class="bg-green-50 p-4 rounded-lg">
+                    <div class="bg-green-50 p-4 rounded-lg border-2 border-green-200">
                         <p class="text-green-700 font-bold">নিট ব্যালেন্স</p>
                         <p id="reportNetBalance" class="text-2xl font-bold">০ টাকা</p>
                     </div>
@@ -364,9 +440,9 @@
             </div>
 
             <!-- মাসিক রিপোর্ট -->
-            <div class="bg-white rounded-xl shadow-md p-6">
-                <h3 class="text-lg font-bold text-gray-800 mb-4">মাসিক রিপোর্ট</h3>
-                <div class="overflow-x-auto">
+            <div class="card bg-white p-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 border-b-2 border-gray-200 pb-2">মাসিক রিপোর্ট</h3>
+                <div class="overflow-x-auto table-bordered">
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-gray-100">
@@ -391,7 +467,7 @@
     </main>
 
     <!-- ফুটার -->
-    <footer class="bg-gray-800 text-white py-6 mt-8">
+    <footer class="bg-gray-800 text-white py-6 mt-8 border-t-4 border-blue-900">
         <div class="container mx-auto px-4 text-center">
             <p>মিস্ত্রি হিসাব - MR. MOMIN এর জন্য তৈরি</p>
             <p class="text-gray-400 text-sm mt-2">আপনার কাজ ও আয়ের সম্পূর্ণ হিসাব রাখুন</p>
@@ -678,7 +754,7 @@
                 }
                 
                 const activityItem = document.createElement('div');
-                activityItem.className = 'flex items-center bg-gray-50 p-3 rounded-lg';
+                activityItem.className = 'activity-item flex items-center bg-gray-50 p-3';
                 activityItem.innerHTML = `
                     <div class="${color} mr-3">
                         <i class="${icon}"></i>
@@ -718,7 +794,7 @@
                     });
                     
                     const workItem = document.createElement('div');
-                    workItem.className = 'bg-gray-50 p-4 rounded-lg border';
+                    workItem.className = 'activity-item bg-gray-50 p-4';
                     workItem.innerHTML = `
                         <div class="flex justify-between items-start">
                             <div class="flex-1">
@@ -774,7 +850,7 @@
                     });
                     
                     const expenseItem = document.createElement('div');
-                    expenseItem.className = 'bg-gray-50 p-4 rounded-lg border';
+                    expenseItem.className = 'activity-item bg-gray-50 p-4';
                     expenseItem.innerHTML = `
                         <div class="flex justify-between items-start">
                             <div class="flex-1">
@@ -830,7 +906,7 @@
                     });
                     
                     const advanceItem = document.createElement('div');
-                    advanceItem.className = 'bg-gray-50 p-4 rounded-lg border';
+                    advanceItem.className = 'activity-item bg-gray-50 p-4';
                     advanceItem.innerHTML = `
                         <div class="flex justify-between items-start">
                             <div class="flex-1">
@@ -886,7 +962,7 @@
                     });
                     
                     const loanItem = document.createElement('div');
-                    loanItem.className = 'bg-gray-50 p-4 rounded-lg border';
+                    loanItem.className = 'activity-item bg-gray-50 p-4';
                     loanItem.innerHTML = `
                         <div class="flex justify-between items-start">
                             <div class="flex-1">
@@ -1031,4 +1107,4 @@
         }
     </script>
 </body>
-                          </html>
+</html>
