@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>মিস্ত্রি হিসাব - MR. MOMIN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Bengali', sans-serif;
+        }
+        .nav-item.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- হেডার -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl font-bold">মিস্ত্রি হিসাব</h1>
+                    <p class="text-blue-100">MR. MOMIN - আপনার ব্যক্তিগত হিসাব ব্যবস্থাপক</p>
+                </div>
+                <div class="bg-white text-blue-600 rounded-full p-3 shadow-md">
+                    <i class="fas fa-hard-hat text-2xl"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- নেভিগেশন -->
+    <nav class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-4">
+            <div class="flex overflow-x-auto py-2 space-x-2">
+                <button class="nav-item active flex flex-col items-center px-4 py-2 rounded-lg transition-all" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt mb-1"></i>
+                    <span class="text-xs">ড্যাশবোর্ড</span>
+                </button>
+                <button class="nav-item flex flex-col items-center px-4 py-2 rounded-lg transition-all" data-section="work">
+                    <i class="fas fa-tools mb-1"></i>
+                    <span class="text-xs">কাজের হিসাব</span>
+                </button>
+                <button class="nav-item flex flex-col items-center px-4 py-2 rounded-lg transition-all" data-section="expense">
+                    <i class="fas fa-money-bill-wave mb-1"></i>
+                    <span class="text-xs">খরচ</span>
+                </button>
+                <button class="nav-item flex flex-col items-center px-4 py-2 rounded-lg transition-all" data-section="advance">
+                    <i class="fas fa-hand-holding-usd mb-1"></i>
+                    <span class="text-xs">অগ্রিম</span>
+                </button>
+                <button class="nav-item flex flex-col items-center px-4 py-2 rounded-lg transition-all" data-section="loan">
+                    <i class="fas fa-handshake mb-1"></i>
+                    <span class="text-xs">ধার</span>
+                </button>
+                <button class="nav-item flex flex-col items-center px-4 py-2 rounded-lg transition-all" data-section="report">
+                    <i class="fas fa-chart-bar mb-1"></i>
+                    <span class="text-xs">রিপোর্ট</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- মূল কন্টেন্ট -->
+    <main class="container mx-auto px-4 py-6">
+        <!-- ড্যাশবোর্ড -->
+        <section id="dashboard" class="section active">
+            <div class="mb-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4">ড্যাশবোর্ড</h2>
+                <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-blue-100 text-blue-600 rounded-full p-4">
+                            <i class="fas fa-user text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold">স্বাগতম, MR. MOMIN</h3>
+                            <p class="text-gray-600">আজ: <span id="currentDate"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- সারাংশ কার্ড -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div class="bg-white rounded-lg shadow p-4 text-center">
+                    <div class="text-blue-500 mb-2">
+                        <i class="fas fa-tools text-2xl"></i>
+                    </div>
+                    <p class="text-gray-600 text-sm">এই মাসের কাজ</p>
+                    <p id="monthWork" class="text-xl font-bold">০ দিন</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4 text-center">
+                    <div class="text-green-500 mb-2">
+                        <i class="fas fa-money-bill text-2xl"></i>
+                    </div>
+                    <p class="text-gray-600 text-sm">মোট আয়</p>
+                    <p id="totalEarning" class="text-xl font-bold">০ টাকা</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4 text-center">
+                    <div class="text-red-500 mb-2">
+                        <i class="fas fa-sack-dollar text-2xl"></i>
+                    </div>
+                    <p class="text-gray-600 text-sm">মোট খরচ</p>
+                    <p id="totalExpense" class="text-xl font-bold">০ টাকা</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4 text-center">
+                    <div class="text-purple-500 mb-2">
+                        <i class="fas fa-scale-balanced text-2xl"></i>
+                    </div>
+                    <p class="text-gray-600 text-sm">নিট ব্যালেন্স</p>
+                    <p id="netBalance" class="text-xl font-bold">০ টাকা</p>
+                </div>
+            </div>
+
+            <!-- সাম্প্রতিক কার্যক্রম -->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">সাম্প্রতিক কার্যক্রম</h3>
+                <div id="recentActivity" class="space-y-4">
+                    <div class="text-center py-8 text-gray-500">
+                        <i class="fas fa-clipboard-list text-4xl mb-3"></i>
+                        <p>কোনো কার্যক্রম নেই</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- কাজের হিসাব -->
+        <section id="work" class="section">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">কাজের হিসাব</h2>
+            
+            <!-- কাজ যোগ করার ফর্ম -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">নতুন কাজ যোগ করুন</h3>
+                <form id="workForm">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="workDate" class="block text-gray-700 mb-2">তারিখ</label>
+                            <input type="date" id="workDate" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label for="workEarning" class="block text-gray-700 mb-2">আয় (টাকায়)</label>
+                            <input type="number" id="workEarning" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" value="600" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="workDescription" class="block text-gray-700 mb-2">কাজের বিবরণ</label>
+                        <textarea id="workDescription" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="আজকে কি কাজ করেছেন? (যেমন: ইট বসানো, প্লাস্টার করা ইত্যাদি)" required></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="workLocation" class="block text-gray-700 mb-2">কাজের স্থান</label>
+                        <input type="text" id="workLocation" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="ঢাকা, মোহাম্মদপুর" required>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition duration-200">
+                        <i class="fas fa-plus-circle mr-2"></i>কাজ যোগ করুন
+                    </button>
+                </form>
+            </div>
+
+            <!-- কাজের তালিকা -->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold text-gray-800">কাজের তালিকা</h3>
+                    <button id="clearWorkBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-200">
+                        <i class="fas fa-trash mr-1"></i>সব মুছুন
+                    </button>
+                </div>
+                <div id="workList" class="space-y-4">
+                    <!-- কাজের আইটেমগুলো এখানে যোগ হবে -->
+                </div>
+                <div id="emptyWorkMessage" class="text-center py-8 text-gray-500">
+                    <i class="fas fa-tools text-4xl mb-3"></i>
+                    <p>কোনো কাজ যোগ করা হয়নি। উপরের ফর্ম ব্যবহার করে আপনার প্রথম কাজ যোগ করুন।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- খরচ -->
+        <section id="expense" class="section">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">খরচের হিসাব</h2>
+            
+            <!-- খরচ যোগ করার ফর্ম -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">নতুন খরচ যোগ করুন</h3>
+                <form id="expenseForm">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="expenseDate" class="block text-gray-700 mb-2">তারিখ</label>
+                            <input type="date" id="expenseDate" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label for="expenseAmount" class="block text-gray-700 mb-2">খরচের পরিমাণ (টাকায়)</label>
+                            <input type="number" id="expenseAmount" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="expenseCategory" class="block text-gray-700 mb-2">খরচের ধরন</label>
+                        <select id="expenseCategory" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option value="">খরচের ধরন নির্বাচন করুন</option>
+                            <option value="খাবার">খাবার</option>
+                            <option value="পরিবহন">পরিবহন</option>
+                            <option value="মaterials">কাজের মালামাল</option>
+                            <option value="বিবিধ">বিবিধ</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="expenseDescription" class="block text-gray-700 mb-2">খরচের বিবরণ</label>
+                        <textarea id="expenseDescription" rows="2" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="খরচের বিস্তারিত বিবরণ লিখুন" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700 transition duration-200">
+                        <i class="fas fa-plus-circle mr-2"></i>খরচ যোগ করুন
+                    </button>
+                </form>
+            </div>
+
+            <!-- খরচের তালিকা -->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold text-gray-800">খরচের তালিকা</h3>
+                    <button id="clearExpenseBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-200">
+                        <i class="fas fa-trash mr-1"></i>সব মুছুন
+                    </button>
+                </div>
+                <div id="expenseList" class="space-y-4">
+                    <!-- খরচের আইটেমগুলো এখানে যোগ হবে -->
+                </div>
+                <div id="emptyExpenseMessage" class="text-center py-8 text-gray-500">
+                    <i class="fas fa-money-bill-wave text-4xl mb-3"></i>
+                    <p>কোনো খরচ যোগ করা হয়নি।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- অগ্রিম -->
+        <section id="advance" class="section">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">অগ্রিম নেওয়ার হিসাব</h2>
+            
+            <!-- অগ্রিম যোগ করার ফর্ম -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">নতুন অগ্রিম যোগ করুন</h3>
+                <form id="advanceForm">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="advanceDate" class="block text-gray-700 mb-2">তারিখ</label>
+                            <input type="date" id="advanceDate" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label for="advanceAmount" class="block text-gray-700 mb-2">অগ্রিমের পরিমাণ (টাকায়)</label>
+                            <input type="number" id="advanceAmount" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="advanceFrom" class="block text-gray-700 mb-2">কে থেকে নিয়েছেন</label>
+                        <input type="text" id="advanceFrom" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="মালিকের নাম" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="advanceDescription" class="block text-gray-700 mb-2">বিবরণ</label>
+                        <textarea id="advanceDescription" rows="2" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="অগ্রিম নেওয়ার কারণ লিখুন" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-yellow-600 text-white py-3 rounded-lg font-bold hover:bg-yellow-700 transition duration-200">
+                        <i class="fas fa-plus-circle mr-2"></i>অগ্রিম যোগ করুন
+                    </button>
+                </form>
+            </div>
+
+            <!-- অগ্রিমের তালিকা -->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold text-gray-800">অগ্রিমের তালিকা</h3>
+                    <button id="clearAdvanceBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-200">
+                        <i class="fas fa-trash mr-1"></i>সব মুছুন
+                    </button>
+                </div>
+                <div id="advanceList" class="space-y-4">
+                    <!-- অগ্রিমের আইটেমগুলো এখানে যোগ হবে -->
+                </div>
+                <div id="emptyAdvanceMessage" class="text-center py-8 text-gray-500">
+                    <i class="fas fa-hand-holding-usd text-4xl mb-3"></i>
+                    <p>কোনো অগ্রিম যোগ করা হয়নি।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ধার -->
+        <section id="loan" class="section">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">ধার দেওয়ার হিসাব</h2>
+            
+            <!-- ধার যোগ করার ফর্ম -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">নতুন ধার যোগ করুন</h3>
+                <form id="loanForm">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="loanDate" class="block text-gray-700 mb-2">তারিখ</label>
+                            <input type="date" id="loanDate" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label for="loanAmount" class="block text-gray-700 mb-2">ধারের পরিমাণ (টাকায়)</label>
+                            <input type="number" id="loanAmount" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="loanTo" class="block text-gray-700 mb-2">কাকে দিয়েছেন</label>
+                        <input type="text" id="loanTo" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="ব্যক্তির নাম" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="loanDescription" class="block text-gray-700 mb-2">বিবরণ</label>
+                        <textarea id="loanDescription" rows="2" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="ধার দেওয়ার কারণ লিখুন" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition duration-200">
+                        <i class="fas fa-plus-circle mr-2"></i>ধার যোগ করুন
+                    </button>
+                </form>
+            </div>
+
+            <!-- ধারের তালিকা -->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold text-gray-800">ধারের তালিকা</h3>
+                    <button id="clearLoanBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-200">
+                        <i class="fas fa-trash mr-1"></i>সব মুছুন
+                    </button>
+                </div>
+                <div id="loanList" class="space-y-4">
+                    <!-- ধারের আইটেমগুলো এখানে যোগ হবে -->
+                </div>
+                <div id="emptyLoanMessage" class="text-center py-8 text-gray-500">
+                    <i class="fas fa-handshake text-4xl mb-3"></i>
+                    <p>কোনো ধার যোগ করা হয়নি।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- রিপোর্ট -->
+        <section id="report" class="section">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">বিস্তারিত রিপোর্ট</h2>
+            
+            <!-- সারাংশ -->
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">আর্থিক সারাংশ</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <p class="text-blue-700 font-bold">মোট আয়</p>
+                        <p id="reportTotalEarning" class="text-2xl font-bold">০ টাকা</p>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg">
+                        <p class="text-red-700 font-bold">মোট খরচ</p>
+                        <p id="reportTotalExpense" class="text-2xl font-bold">০ টাকা</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <p class="text-green-700 font-bold">নিট ব্যালেন্স</p>
+                        <p id="reportNetBalance" class="text-2xl font-bold">০ টাকা</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- মাসিক রিপোর্ট -->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">মাসিক রিপোর্ট</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="p-3 border">মাস</th>
+                                <th class="p-3 border">কাজের দিন</th>
+                                <th class="p-3 border">মোট আয়</th>
+                                <th class="p-3 border">মোট খরচ</th>
+                                <th class="p-3 border">নিট আয়</th>
+                            </tr>
+                        </thead>
+                        <tbody id="monthlyReport">
+                            <!-- মাসিক রিপোর্ট এখানে যোগ হবে -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="emptyReportMessage" class="text-center py-8 text-gray-500">
+                    <i class="fas fa-chart-bar text-4xl mb-3"></i>
+                    <p>কোনো তথ্য নেই রিপোর্ট তৈরি করতে।</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ফুটার -->
+    <footer class="bg-gray-800 text-white py-6 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>মিস্ত্রি হিসাব - MR. MOMIN এর জন্য তৈরি</p>
+            <p class="text-gray-400 text-sm mt-2">আপনার কাজ ও আয়ের সম্পূর্ণ হিসাব রাখুন</p>
+        </div>
+    </footer>
+
+    <script>
+        // আজকের তারিখ সেট করা
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('bn-BD', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            weekday: 'long'
+        });
+
+        // ফর্মের তারিখগুলো আজকের তারিখে সেট করা
+        document.getElementById('workDate').valueAsDate = new Date();
+        document.getElementById('expenseDate').valueAsDate = new Date();
+        document.getElementById('advanceDate').valueAsDate = new Date();
+        document.getElementById('loanDate').valueAsDate = new Date();
+
+        // নেভিগেশন হ্যান্ডলার
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // সক্রিয় নেভ আইটেম আপডেট
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // সক্রিয় সেকশন আপডেট
+                const sectionId = this.getAttribute('data-section');
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById(sectionId).classList.add('active');
+            });
+        });
+
+        // লোকাল স্টোরেজ থেকে ডেটা লোড করা
+        let workData = JSON.parse(localStorage.getItem('masonWorkData')) || [];
+        let expenseData = JSON.parse(localStorage.getItem('masonExpenseData')) || [];
+        let advanceData = JSON.parse(localStorage.getItem('masonAdvanceData')) || [];
+        let loanData = JSON.parse(localStorage.getItem('masonLoanData')) || [];
+
+        // UI আপডেট করা
+        updateUI();
+
+        // কাজের ফর্ম সাবমিশন
+        document.getElementById('workForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const workDate = document.getElementById('workDate').value;
+            const workEarning = parseInt(document.getElementById('workEarning').value);
+            const workDescription = document.getElementById('workDescription').value;
+            const workLocation = document.getElementById('workLocation').value;
+            
+            const newWork = {
+                id: Date.now(),
+                date: workDate,
+                earning: workEarning,
+                description: workDescription,
+                location: workLocation,
+                type: 'work'
+            };
+            
+            workData.push(newWork);
+            localStorage.setItem('masonWorkData', JSON.stringify(workData));
+            updateUI();
+            
+            this.reset();
+            document.getElementById('workDate').valueAsDate = new Date();
+            document.getElementById('workEarning').value = 600;
+            
+            alert('কাজ সফলভাবে যোগ করা হয়েছে!');
+        });
+
+        // খরচের ফর্ম সাবমিশন
+        document.getElementById('expenseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const expenseDate = document.getElementById('expenseDate').value;
+            const expenseAmount = parseInt(document.getElementById('expenseAmount').value);
+            const expenseCategory = document.getElementById('expenseCategory').value;
+            const expenseDescription = document.getElementById('expenseDescription').value;
+            
+            const newExpense = {
+                id: Date.now(),
+                date: expenseDate,
+                amount: expenseAmount,
+                category: expenseCategory,
+                description: expenseDescription,
+                type: 'expense'
+            };
+            
+            expenseData.push(newExpense);
+            localStorage.setItem('masonExpenseData', JSON.stringify(expenseData));
+            updateUI();
+            
+            this.reset();
+            document.getElementById('expenseDate').valueAsDate = new Date();
+            
+            alert('খরচ সফলভাবে যোগ করা হয়েছে!');
+        });
+
+        // অগ্রিমের ফর্ম সাবমিশন
+        document.getElementById('advanceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const advanceDate = document.getElementById('advanceDate').value;
+            const advanceAmount = parseInt(document.getElementById('advanceAmount').value);
+            const advanceFrom = document.getElementById('advanceFrom').value;
+            const advanceDescription = document.getElementById('advanceDescription').value;
+            
+            const newAdvance = {
+                id: Date.now(),
+                date: advanceDate,
+                amount: advanceAmount,
+                from: advanceFrom,
+                description: advanceDescription,
+                type: 'advance'
+            };
+            
+            advanceData.push(newAdvance);
+            localStorage.setItem('masonAdvanceData', JSON.stringify(advanceData));
+            updateUI();
+            
+            this.reset();
+            document.getElementById('advanceDate').valueAsDate = new Date();
+            
+            alert('অগ্রিম সফলভাবে যোগ করা হয়েছে!');
+        });
+
+        // ধারের ফর্ম সাবমিশন
+        document.getElementById('loanForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const loanDate = document.getElementById('loanDate').value;
+            const loanAmount = parseInt(document.getElementById('loanAmount').value);
+            const loanTo = document.getElementById('loanTo').value;
+            const loanDescription = document.getElementById('loanDescription').value;
+            
+            const newLoan = {
+                id: Date.now(),
+                date: loanDate,
+                amount: loanAmount,
+                to: loanTo,
+                description: loanDescription,
+                type: 'loan'
+            };
+            
+            loanData.push(newLoan);
+            localStorage.setItem('masonLoanData', JSON.stringify(loanData));
+            updateUI();
+            
+            this.reset();
+            document.getElementById('loanDate').valueAsDate = new Date();
+            
+            alert('ধার সফলভাবে যোগ করা হয়েছে!');
+        });
+
+        // সব মুছুন বাটন
+        document.getElementById('clearWorkBtn').addEventListener('click', function() {
+            if (confirm('আপনি কি নিশ্চিত যে আপনি সব কাজের তথ্য মুছতে চান?')) {
+                workData = [];
+                localStorage.setItem('masonWorkData', JSON.stringify(workData));
+                updateUI();
+            }
+        });
+
+        document.getElementById('clearExpenseBtn').addEventListener('click', function() {
+            if (confirm('আপনি কি নিশ্চিত যে আপনি সব খরচের তথ্য মুছতে চান?')) {
+                expenseData = [];
+                localStorage.setItem('masonExpenseData', JSON.stringify(expenseData));
+                updateUI();
+            }
+        });
+
+        document.getElementById('clearAdvanceBtn').addEventListener('click', function() {
+            if (confirm('আপনি কি নিশ্চিত যে আপনি সব অগ্রিমের তথ্য মুছতে চান?')) {
+                advanceData = [];
+                localStorage.setItem('masonAdvanceData', JSON.stringify(advanceData));
+                updateUI();
+            }
+        });
+
+        document.getElementById('clearLoanBtn').addEventListener('click', function() {
+            if (confirm('আপনি কি নিশ্চিত যে আপনি সব ধারের তথ্য মুছতে চান?')) {
+                loanData = [];
+                localStorage.setItem('masonLoanData', JSON.stringify(loanData));
+                updateUI();
+            }
+        });
+
+        // UI আপডেট ফাংশন
+        function updateUI() {
+            updateDashboard();
+            updateWorkList();
+            updateExpenseList();
+            updateAdvanceList();
+            updateLoanList();
+            updateReport();
+        }
+
+        // ড্যাশবোর্ড আপডেট
+        function updateDashboard() {
+            // বর্তমান মাসের কাজ
+            const currentMonth = new Date().getMonth();
+            const currentYear = new Date().getFullYear();
+            
+            const monthWork = workData.filter(work => {
+                const workDate = new Date(work.date);
+                return workDate.getMonth() === currentMonth && workDate.getFullYear() === currentYear;
+            });
+            
+            document.getElementById('monthWork').textContent = `${monthWork.length} দিন`;
+            
+            // মোট আয়
+            const totalEarning = workData.reduce((sum, work) => sum + work.earning, 0);
+            document.getElementById('totalEarning').textContent = `${totalEarning} টাকা`;
+            
+            // মোট খরচ
+            const totalExpense = expenseData.reduce((sum, expense) => sum + expense.amount, 0);
+            document.getElementById('totalExpense').textContent = `${totalExpense} টাকা`;
+            
+            // নিট ব্যালেন্স
+            const netBalance = totalEarning - totalExpense;
+            document.getElementById('netBalance').textContent = `${netBalance} টাকা`;
+            
+            // সাম্প্রতিক কার্যক্রম
+            updateRecentActivity();
+        }
+
+        // সাম্প্রতিক কার্যক্রম আপডেট
+        function updateRecentActivity() {
+            const recentActivity = document.getElementById('recentActivity');
+            recentActivity.innerHTML = '';
+            
+            // সব ডেটা একত্রিত করা
+            const allData = [...workData, ...expenseData, ...advanceData, ...loanData];
+            
+            // তারিখ অনুসারে সাজানো
+            allData.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            // সর্বশেষ ৫টি আইটেম দেখানো
+            const recentItems = allData.slice(0, 5);
+            
+            if (recentItems.length === 0) {
+                recentActivity.innerHTML = `
+                    <div class="text-center py-8 text-gray-500">
+                        <i class="fas fa-clipboard-list text-4xl mb-3"></i>
+                        <p>কোনো কার্যক্রম নেই</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            recentItems.forEach(item => {
+                const dateObj = new Date(item.date);
+                const formattedDate = dateObj.toLocaleDateString('bn-BD', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                
+                let icon, color, text;
+                
+                if (item.type === 'work') {
+                    icon = 'fas fa-tools';
+                    color = 'text-green-500';
+                    text = `কাজ: ${item.description} - ${item.earning} টাকা`;
+                } else if (item.type === 'expense') {
+                    icon = 'fas fa-money-bill-wave';
+                    color = 'text-red-500';
+                    text = `খরচ: ${item.description} - ${item.amount} টাকা`;
+                } else if (item.type === 'advance') {
+                    icon = 'fas fa-hand-holding-usd';
+                    color = 'text-yellow-500';
+                    text = `অগ্রিম: ${item.from} - ${item.amount} টাকা`;
+                } else if (item.type === 'loan') {
+                    icon = 'fas fa-handshake';
+                    color = 'text-blue-500';
+                    text = `ধার: ${item.to} - ${item.amount} টাকা`;
+                }
+                
+                const activityItem = document.createElement('div');
+                activityItem.className = 'flex items-center bg-gray-50 p-3 rounded-lg';
+                activityItem.innerHTML = `
+                    <div class="${color} mr-3">
+                        <i class="${icon}"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-medium">${text}</p>
+                        <p class="text-sm text-gray-500">${formattedDate}</p>
+                    </div>
+                `;
+                
+                recentActivity.appendChild(activityItem);
+            });
+        }
+
+        // কাজের তালিকা আপডেট
+        function updateWorkList() {
+            const workList = document.getElementById('workList');
+            const emptyWorkMessage = document.getElementById('emptyWorkMessage');
+            
+            workList.innerHTML = '';
+            
+            if (workData.length === 0) {
+                emptyWorkMessage.style.display = 'block';
+            } else {
+                emptyWorkMessage.style.display = 'none';
+                
+                // তারিখ অনুসারে সাজানো
+                workData.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                workData.forEach(work => {
+                    const dateObj = new Date(work.date);
+                    const formattedDate = dateObj.toLocaleDateString('bn-BD', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        weekday: 'long'
+                    });
+                    
+                    const workItem = document.createElement('div');
+                    workItem.className = 'bg-gray-50 p-4 rounded-lg border';
+                    workItem.innerHTML = `
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1">
+                                <h3 class="font-bold text-lg">${formattedDate}</h3>
+                                <p class="text-gray-700 mt-1">${work.description}</p>
+                                <div class="flex mt-2 text-sm text-gray-600">
+                                    <span class="mr-4">📍 ${work.location}</span>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-green-600">${work.earning} টাকা</p>
+                                <button class="text-red-500 mt-2 delete-work-btn" data-id="${work.id}">
+                                    <i class="fas fa-trash mr-1"></i>মুছুন
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    workList.appendChild(workItem);
+                });
+                
+                // মুছুন বাটনের জন্য ইভেন্ট লিসেনার যোগ
+                document.querySelectorAll('.delete-work-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.getAttribute('data-id'));
+                        deleteWork(id);
+                    });
+                });
+            }
+        }
+
+        // খরচের তালিকা আপডেট
+        function updateExpenseList() {
+            const expenseList = document.getElementById('expenseList');
+            const emptyExpenseMessage = document.getElementById('emptyExpenseMessage');
+            
+            expenseList.innerHTML = '';
+            
+            if (expenseData.length === 0) {
+                emptyExpenseMessage.style.display = 'block';
+            } else {
+                emptyExpenseMessage.style.display = 'none';
+                
+                // তারিখ অনুসারে সাজানো
+                expenseData.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                expenseData.forEach(expense => {
+                    const dateObj = new Date(expense.date);
+                    const formattedDate = dateObj.toLocaleDateString('bn-BD', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    
+                    const expenseItem = document.createElement('div');
+                    expenseItem.className = 'bg-gray-50 p-4 rounded-lg border';
+                    expenseItem.innerHTML = `
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1">
+                                <h3 class="font-bold text-lg">${formattedDate}</h3>
+                                <p class="text-gray-700 mt-1">${expense.description}</p>
+                                <div class="flex mt-2 text-sm text-gray-600">
+                                    <span class="mr-4">📁 ${expense.category}</span>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-red-600">${expense.amount} টাকা</p>
+                                <button class="text-red-500 mt-2 delete-expense-btn" data-id="${expense.id}">
+                                    <i class="fas fa-trash mr-1"></i>মুছুন
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    expenseList.appendChild(expenseItem);
+                });
+                
+                // মুছুন বাটনের জন্য ইভেন্ট লিসেনার যোগ
+                document.querySelectorAll('.delete-expense-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.getAttribute('data-id'));
+                        deleteExpense(id);
+                    });
+                });
+            }
+        }
+
+        // অগ্রিমের তালিকা আপডেট
+        function updateAdvanceList() {
+            const advanceList = document.getElementById('advanceList');
+            const emptyAdvanceMessage = document.getElementById('emptyAdvanceMessage');
+            
+            advanceList.innerHTML = '';
+            
+            if (advanceData.length === 0) {
+                emptyAdvanceMessage.style.display = 'block';
+            } else {
+                emptyAdvanceMessage.style.display = 'none';
+                
+                // তারিখ অনুসারে সাজানো
+                advanceData.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                advanceData.forEach(advance => {
+                    const dateObj = new Date(advance.date);
+                    const formattedDate = dateObj.toLocaleDateString('bn-BD', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    
+                    const advanceItem = document.createElement('div');
+                    advanceItem.className = 'bg-gray-50 p-4 rounded-lg border';
+                    advanceItem.innerHTML = `
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1">
+                                <h3 class="font-bold text-lg">${formattedDate}</h3>
+                                <p class="text-gray-700 mt-1">${advance.description}</p>
+                                <div class="flex mt-2 text-sm text-gray-600">
+                                    <span class="mr-4">👤 ${advance.from}</span>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-yellow-600">${advance.amount} টাকা</p>
+                                <button class="text-red-500 mt-2 delete-advance-btn" data-id="${advance.id}">
+                                    <i class="fas fa-trash mr-1"></i>মুছুন
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    advanceList.appendChild(advanceItem);
+                });
+                
+                // মুছুন বাটনের জন্য ইভেন্ট লিসেনার যোগ
+                document.querySelectorAll('.delete-advance-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.getAttribute('data-id'));
+                        deleteAdvance(id);
+                    });
+                });
+            }
+        }
+
+        // ধারের তালিকা আপডেট
+        function updateLoanList() {
+            const loanList = document.getElementById('loanList');
+            const emptyLoanMessage = document.getElementById('emptyLoanMessage');
+            
+            loanList.innerHTML = '';
+            
+            if (loanData.length === 0) {
+                emptyLoanMessage.style.display = 'block';
+            } else {
+                emptyLoanMessage.style.display = 'none';
+                
+                // তারিখ অনুসারে সাজানো
+                loanData.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                loanData.forEach(loan => {
+                    const dateObj = new Date(loan.date);
+                    const formattedDate = dateObj.toLocaleDateString('bn-BD', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    
+                    const loanItem = document.createElement('div');
+                    loanItem.className = 'bg-gray-50 p-4 rounded-lg border';
+                    loanItem.innerHTML = `
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1">
+                                <h3 class="font-bold text-lg">${formattedDate}</h3>
+                                <p class="text-gray-700 mt-1">${loan.description}</p>
+                                <div class="flex mt-2 text-sm text-gray-600">
+                                    <span class="mr-4">👤 ${loan.to}</span>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-blue-600">${loan.amount} টাকা</p>
+                                <button class="text-red-500 mt-2 delete-loan-btn" data-id="${loan.id}">
+                                    <i class="fas fa-trash mr-1"></i>মুছুন
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    loanList.appendChild(loanItem);
+                });
+                
+                // মুছুন বাটনের জন্য ইভেন্ট লিসেনার যোগ
+                document.querySelectorAll('.delete-loan-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = parseInt(this.getAttribute('data-id'));
+                        deleteLoan(id);
+                    });
+                });
+            }
+        }
+
+        // রিপোর্ট আপডেট
+        function updateReport() {
+            // সারাংশ
+            const totalEarning = workData.reduce((sum, work) => sum + work.earning, 0);
+            const totalExpense = expenseData.reduce((sum, expense) => sum + expense.amount, 0);
+            const netBalance = totalEarning - totalExpense;
+            
+            document.getElementById('reportTotalEarning').textContent = `${totalEarning} টাকা`;
+            document.getElementById('reportTotalExpense').textContent = `${totalExpense} টাকা`;
+            document.getElementById('reportNetBalance').textContent = `${netBalance} টাকা`;
+            
+            // মাসিক রিপোর্ট
+            const monthlyReport = document.getElementById('monthlyReport');
+            const emptyReportMessage = document.getElementById('emptyReportMessage');
+            
+            monthlyReport.innerHTML = '';
+            
+            if (workData.length === 0 && expenseData.length === 0) {
+                emptyReportMessage.style.display = 'block';
+            } else {
+                emptyReportMessage.style.display = 'none';
+                
+                // মাস অনুসারে ডেটা গ্রুপ করা
+                const monthlyData = {};
+                
+                workData.forEach(work => {
+                    const date = new Date(work.date);
+                    const monthYear = `${date.getFullYear()}-${date.getMonth()}`;
+                    
+                    if (!monthlyData[monthYear]) {
+                        monthlyData[monthYear] = {
+                            month: date.toLocaleDateString('bn-BD', { year: 'numeric', month: 'long' }),
+                            workDays: 0,
+                            earning: 0,
+                            expense: 0
+                        };
+                    }
+                    
+                    monthlyData[monthYear].workDays++;
+                    monthlyData[monthYear].earning += work.earning;
+                });
+                
+                expenseData.forEach(expense => {
+                    const date = new Date(expense.date);
+                    const monthYear = `${date.getFullYear()}-${date.getMonth()}`;
+                    
+                    if (!monthlyData[monthYear]) {
+                        monthlyData[monthYear] = {
+                            month: date.toLocaleDateString('bn-BD', { year: 'numeric', month: 'long' }),
+                            workDays: 0,
+                            earning: 0,
+                            expense: 0
+                        };
+                    }
+                    
+                    monthlyData[monthYear].expense += expense.amount;
+                });
+                
+                // মাস অনুসারে সাজানো
+                const sortedMonths = Object.keys(monthlyData).sort().reverse();
+                
+                sortedMonths.forEach(monthKey => {
+                    const data = monthlyData[monthKey];
+                    const netEarning = data.earning - data.expense;
+                    
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="p-3 border">${data.month}</td>
+                        <td class="p-3 border">${data.workDays} দিন</td>
+                        <td class="p-3 border">${data.earning} টাকা</td>
+                        <td class="p-3 border">${data.expense} টাকা</td>
+                        <td class="p-3 border font-bold ${netEarning >= 0 ? 'text-green-600' : 'text-red-600'}">${netEarning} টাকা</td>
+                    `;
+                    
+                    monthlyReport.appendChild(row);
+                });
+            }
+        }
+
+        // আইটেম মুছার ফাংশন
+        function deleteWork(id) {
+            if (confirm('আপনি কি এই কাজের তথ্য মুছতে চান?')) {
+                workData = workData.filter(work => work.id !== id);
+                localStorage.setItem('masonWorkData', JSON.stringify(workData));
+                updateUI();
+            }
+        }
+
+        function deleteExpense(id) {
+            if (confirm('আপনি কি এই খরচের তথ্য মুছতে চান?')) {
+                expenseData = expenseData.filter(expense => expense.id !== id);
+                localStorage.setItem('masonExpenseData', JSON.stringify(expenseData));
+                updateUI();
+            }
+        }
+
+        function deleteAdvance(id) {
+            if (confirm('আপনি কি এই অগ্রিমের তথ্য মুছতে চান?')) {
+                advanceData = advanceData.filter(advance => advance.id !== id);
+                localStorage.setItem('masonAdvanceData', JSON.stringify(advanceData));
+                updateUI();
+            }
+        }
+
+        function deleteLoan(id) {
+            if (confirm('আপনি কি এই ধারের তথ্য মুছতে চান?')) {
+                loanData = loanData.filter(loan => loan.id !== id);
+                localStorage.setItem('masonLoanData', JSON.stringify(loanData));
+                updateUI();
+            }
+        }
+    </script>
+</body>
+                          </html>
